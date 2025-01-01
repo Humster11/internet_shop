@@ -1,10 +1,12 @@
 package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
+import org.skypro.skyshop.product.SimpleProduct;
 
 public class ProductBasket {
     private Product[] products = new Product[5];
     private int countProducts = 0;
+    private int countSpecialProducts = 0;
 
     public ProductBasket() {
 
@@ -18,6 +20,9 @@ public class ProductBasket {
             if (products[i] == null) {
                 products[i] = product;
                 countProducts = countProducts + 1;
+                if (product.inSpecial()){
+                    countSpecialProducts = countSpecialProducts + 1;
+                }
                 break;
             }
         }
@@ -27,7 +32,7 @@ public class ProductBasket {
         int sum = 0;
         for (int i = 0; i <= products.length - 1; i++) {
             if (products[i] == null) {
-                products[i] = new Product(" ", 0);
+                products[i] = new SimpleProduct(" ", 0);
             }
             sum = sum + products[i].getCostProduct();
         }
@@ -43,6 +48,8 @@ public class ProductBasket {
                     System.out.println(products[i].toString());
                 }
             }
+            System.out.println("Итого: " + sumBasket() + " руб");
+            System.out.println("Специальных товаров: " + countSpecialProducts + " штук");
         }
     }
 
