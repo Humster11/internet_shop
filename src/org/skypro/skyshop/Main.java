@@ -1,9 +1,7 @@
 package org.skypro.skyshop;
 
 import org.skypro.skyshop.basket.ProductBasket;
-import org.skypro.skyshop.product.DiscountedProduct;
-import org.skypro.skyshop.product.FixPriceProduct;
-import org.skypro.skyshop.product.SimpleProduct;
+import org.skypro.skyshop.product.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,13 +10,30 @@ public class Main {
         FixPriceProduct secondProduct = new FixPriceProduct("банан");
         DiscountedProduct thirdProduct = new DiscountedProduct("огурец",150,5);
 
-        ProductBasket basket = new ProductBasket();
+        /*ProductBasket basket = new ProductBasket();
         basket.addProduct(firstProduct);
         basket.addProduct(secondProduct);
         basket.addProduct(thirdProduct);
+        basket.listBasket();*/
+
+        Article firstArticle = new Article("Свойства чая","Чаи бывают разные. Чай имеет много положительных свойств для организма");
+        Article secondArticle = new Article("Хлеб","Хлеб имеет множество рецептов таких как...");
+        Article thirdArticle = new Article("Огурец","Огурец является овощем");
+        Article fourthArticle = new Article("Огурец","Огурец является овощем");
+
+        SearchEngine search = new SearchEngine(5);
+        search.add(firstProduct);
+        search.add(firstArticle);
+        search.add(secondArticle);
+        search.add(secondProduct);
+        search.add(thirdArticle);
+        search.add(fourthArticle);
+
+        search.search("а");
 
 
-        basket.listBasket();
+
+
 
 
     }
