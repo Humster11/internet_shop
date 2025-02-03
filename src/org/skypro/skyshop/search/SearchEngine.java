@@ -1,8 +1,9 @@
-package org.skypro.skyshop.product;
+package org.skypro.skyshop.search;
 
 public class SearchEngine {
     private Searchable[] SearchableArray;
     private int count = 0;
+    private String[] resultSearh = new String[5];
 
     public SearchEngine(int size) {
         this.SearchableArray = new Searchable[size];
@@ -21,8 +22,7 @@ public class SearchEngine {
         }
     }
 
-    public void search(String searchQuery) {
-        String[] resultSearh = new String[5];
+    public String[] search(String searchQuery) {
         int countSearchable = 0;
         for (int i = 0; i <= SearchableArray.length - 1; i++) {
             if (SearchableArray[i].getSearchTerm().contains(searchQuery)) {
@@ -32,10 +32,11 @@ public class SearchEngine {
                 }
             }
         }
-        for (int j = 0; j <= resultSearh.length-1; j++) {
-            if (resultSearh[j] != null) {
-                System.out.println(resultSearh[j]);
-            }
-        }
+        return resultSearh;
     }
+
+    /*@Override
+    public String toString(){
+
+    }*/
 }

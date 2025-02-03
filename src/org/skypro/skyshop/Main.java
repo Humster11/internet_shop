@@ -1,7 +1,11 @@
 package org.skypro.skyshop;
 
-import org.skypro.skyshop.basket.ProductBasket;
+import org.skypro.skyshop.info.Article;
 import org.skypro.skyshop.product.*;
+import org.skypro.skyshop.search.SearchEngine;
+
+
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
@@ -29,7 +33,9 @@ public class Main {
         search.add(thirdArticle);
         search.add(fourthArticle);
 
-        search.search("а");
+
+        String[] resultSearch = search.search("а");
+        System.out.println(Arrays.toString(resultSearch));
 
 
 
