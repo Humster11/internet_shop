@@ -6,9 +6,7 @@ public interface Searchable {
 
     String getTypeContent();
 
-    default String getNameSearchable(){
-        return this.getStringRepresentation();
-    };
+    String getNameSearchable();
 
     default String getStringRepresentation(){
         return this.getNameSearchable()+" - "+this.getTypeContent();
