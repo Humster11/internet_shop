@@ -2,36 +2,27 @@ package org.skypro.skyshop.search;
 
 import org.skypro.skyshop.exception.BestResultNotFound;
 
-public class SearchEngine {
-    private Searchable[] SearchableArray;
-    private int count = 0;
-    private String[] resultSearh = new String[5];
+import java.util.ArrayList;
 
-    public SearchEngine(int size) {
-        this.SearchableArray = new Searchable[size];
+public class SearchEngine {
+    private ArrayList<Searchable> SearchableArray = new ArrayList<Searchable>();
+    private int count = 0;
+    private ArrayList<String> resultSearh = new ArrayList<String>();
+
+    public SearchEngine() {
     }
 
     public void add(Searchable searchableElement) {
-        if (count >= SearchableArray.length) {
-            System.out.println("Поисковый массив заполнен");
-        }
-        for (int i = 0; i < SearchableArray.length; i++) {
-            if (SearchableArray[i] == null) {
-                SearchableArray[i] = searchableElement;
-                count = count + 1;
-                break;
-            }
-        }
+        SearchableArray.add(searchableElement);
+        count = count + 1;
+
     }
 
-    public String[] search(String searchQuery) {
+    public ArrayList<String> search(String searchQuery) {
         int countSearchable = 0;
-        for (int i = 0; i <= SearchableArray.length - 1; i++) {
-            if (SearchableArray[i].getSearchTerm().contains(searchQuery)) {
-                resultSearh[i] = i+". Тип контента "+SearchableArray[i].getTypeContent()+" \n"+SearchableArray[i].getSearchTerm();
-                if (countSearchable >= resultSearh.length) {
-                    break;
-                }
+        for (int i = 0; i <= SearchableArray.size() - 1; i++) {
+            if (SearchableArray.get(i).getSearchTerm().contains(searchQuery)) {
+                resultSearh.add("\n" + i + ". Тип контента " + SearchableArray.get(i).getTypeContent() + " \n" + SearchableArray.get(i).getSearchTerm());
             }
         }
         return resultSearh;
@@ -39,14 +30,15 @@ public class SearchEngine {
 
     public Searchable searchInSearhable(String search) throws BestResultNotFound {
         Searchable result = null;
-        for (int i = 0; i <= SearchableArray.length - 1; i++){
-            if(SearchableArray[i].getSearchTerm().contains(search)){
-                result = SearchableArray[i];
+        for (int i = 0; i <= SearchableArray.size() - 1; i++) {
+            if (SearchableArray.get(i).getSearchTerm().contains(search)) {
+                result = SearchableArray.get(i);
                 break;
             }
 
-        }if (result==null) {
-            throw new BestResultNotFound("Объёкт поиска не найден");
+        }
+        if (result == null) {
+            throw new BestResultNotFound("Объект поиска не найден");
         }
 
         return result;
