@@ -6,7 +6,11 @@ public class SimpleProduct extends Product {
 
     public SimpleProduct(String nameProduct, int costProduct) {
         super(nameProduct);
-        this.costProduct = costProduct;
+        if (costProduct>0){
+            this.costProduct = costProduct;
+        }else {
+            throw new IllegalArgumentException("Цена продукта должна быть больше 0");
+        }
     }
 
     @Override

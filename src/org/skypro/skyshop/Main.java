@@ -1,5 +1,6 @@
 package org.skypro.skyshop;
 
+import org.skypro.skyshop.exception.BestResultNotFound;
 import org.skypro.skyshop.info.Article;
 import org.skypro.skyshop.product.*;
 import org.skypro.skyshop.search.SearchEngine;
@@ -8,7 +9,37 @@ import org.skypro.skyshop.search.SearchEngine;
 import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws BestResultNotFound {
+
+        /*Проверка работы исключений*/
+
+        try {
+            SimpleProduct firstProduct = new SimpleProduct(" ", 100);
+        } catch (IllegalArgumentException e){
+            System.out.println("Не введено название продукта");
+        }
+
+        try {
+            SimpleProduct firstProduct = new SimpleProduct("Чай", 0);
+        } catch (IllegalArgumentException e){
+            System.out.println("Цена продукта должна быть больше 0");
+        }
+
+
+        try {
+            DiscountedProduct thirdProduct = new DiscountedProduct("огурец",0,5);
+        } catch (IllegalArgumentException e){
+            System.out.println("Цена продукта должна быть больше 0");
+        }
+
+        try {
+            DiscountedProduct thirdProduct = new DiscountedProduct("огурец",0,500);
+        } catch (IllegalArgumentException e){
+            System.out.println("Скидка может быть от 0 до 100%");
+        }
+        /*Проверка работы исключений*/
+
+
 
         SimpleProduct firstProduct = new SimpleProduct("чай", 100);
         FixPriceProduct secondProduct = new FixPriceProduct("банан");
@@ -31,11 +62,23 @@ public class Main {
         search.add(secondArticle);
         search.add(secondProduct);
         search.add(thirdArticle);
-        search.add(fourthArticle);
+        /*search.add(fourthArticle);*/
 
 
-        String[] resultSearch = search.search("а");
-        System.out.println(Arrays.toString(resultSearch));
+        /*String[] resultSearch = search.search("а");
+        System.out.println(Arrays.toString(resultSearch));*/
+
+        /*Проверка работы метода поиска*/
+        System.out.println(search.searchInSearhable("Огурец"));
+        /*Проверка работы метода поиска*/
+
+        /*Проверка собствеенного исключения*/
+        try {
+            search.searchInSearhable("Морс");
+        } catch (BestResultNotFound e){
+            System.out.println("Объёект поиска не найден");
+        }
+        /*Проверка собственного исключения*/
 
 
     }

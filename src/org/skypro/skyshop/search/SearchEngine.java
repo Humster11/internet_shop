@@ -1,5 +1,7 @@
 package org.skypro.skyshop.search;
 
+import org.skypro.skyshop.exception.BestResultNotFound;
+
 public class SearchEngine {
     private Searchable[] SearchableArray;
     private int count = 0;
@@ -35,8 +37,18 @@ public class SearchEngine {
         return resultSearh;
     }
 
-    /*@Override
-    public String toString(){
+    public Searchable searchInSearhable(String search) throws BestResultNotFound {
+        Searchable result = null;
+        for (int i = 0; i <= SearchableArray.length - 1; i++){
+            if(SearchableArray[i].getSearchTerm().contains(search)){
+                result = SearchableArray[i];
+                break;
+            }
 
-    }*/
+        }if (result==null) {
+            throw new BestResultNotFound("Объёкт поиска не найден");
+        }
+
+        return result;
+    }
 }
