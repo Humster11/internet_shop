@@ -4,8 +4,10 @@ import org.skypro.skyshop.exception.BestResultNotFound;
 import org.skypro.skyshop.info.Article;
 import org.skypro.skyshop.product.*;
 import org.skypro.skyshop.search.SearchEngine;
+import org.skypro.skyshop.basket.ProductBasket;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
@@ -13,7 +15,7 @@ public class Main {
 
         /*Проверка работы исключений*/
 
-        try {
+        /*try {
             SimpleProduct firstProduct = new SimpleProduct(" ", 100);
         } catch (IllegalArgumentException e){
             System.out.println("Не введено название продукта");
@@ -36,7 +38,7 @@ public class Main {
             DiscountedProduct thirdProduct = new DiscountedProduct("огурец",0,500);
         } catch (IllegalArgumentException e){
             System.out.println("Скидка может быть от 0 до 100%");
-        }
+        }*/
         /*Проверка работы исключений*/
 
 
@@ -45,31 +47,34 @@ public class Main {
         FixPriceProduct secondProduct = new FixPriceProduct("банан");
         DiscountedProduct thirdProduct = new DiscountedProduct("огурец",150,5);
 
-        /*ProductBasket basket = new ProductBasket();
+        ProductBasket basket = new ProductBasket();
         basket.addProduct(firstProduct);
         basket.addProduct(secondProduct);
         basket.addProduct(thirdProduct);
-        basket.listBasket();*/
+        System.out.println(basket.sumBasket());
+
+        basket.cleanBasketByNameProduct("огурец");
+        basket.listBasket();
 
         Article firstArticle = new Article("Свойства чая","Чаи бывают разные. Чай имеет много положительных свойств для организма");
         Article secondArticle = new Article("Хлеб","Хлеб имеет множество рецептов таких как...");
         Article thirdArticle = new Article("Огурец","Огурец является овощем");
         Article fourthArticle = new Article("Огурец","Огурец является овощем");
 
-        SearchEngine search = new SearchEngine(5);
+        SearchEngine search = new SearchEngine();
         search.add(firstProduct);
         search.add(firstArticle);
         search.add(secondArticle);
         search.add(secondProduct);
         search.add(thirdArticle);
-        /*search.add(fourthArticle);*/
+        search.add(fourthArticle);
 
 
-        /*String[] resultSearch = search.search("а");
-        System.out.println(Arrays.toString(resultSearch));*/
+        ArrayList<String> resultSearch = new ArrayList<String>(search.search("а"));
+        System.out.println(resultSearch);
 
         /*Проверка работы метода поиска*/
-        System.out.println(search.searchInSearhable("Огурец"));
+        System.out.println(search.searchInSearhable("Хлеб"));
         /*Проверка работы метода поиска*/
 
         /*Проверка собствеенного исключения*/
