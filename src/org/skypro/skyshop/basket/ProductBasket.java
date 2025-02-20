@@ -5,10 +5,11 @@ import org.skypro.skyshop.product.Product;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 public class ProductBasket {
-    private ArrayList<Product> products = new ArrayList<Product>();
-    private int countProducts = 0;
+    private List<Product> products = new ArrayList<>();
+
     private int countSpecialProducts = 0;
 
     public ProductBasket() {
@@ -16,14 +17,12 @@ public class ProductBasket {
     }
 
     public void addProduct(Product product) {
-        for (int i = 0; i <= products.size(); i++) {
+
             products.add(product);
-            countProducts = countProducts + 1;
             if (product.inSpecial()) {
                 countSpecialProducts = countSpecialProducts + 1;
             }
-            break;
-        }
+
     }
 
 
@@ -36,7 +35,7 @@ public class ProductBasket {
     }
 
     public void listBasket() {
-        if (countProducts == 0) {
+        if (products.size() == 0) {
             System.out.println("Корзина пустая");
         } else {
             System.out.println("Текущий список продуктов: ");
@@ -54,7 +53,7 @@ public class ProductBasket {
     public boolean checkProduct(String nameProduct) {
         boolean check = false;
 
-        if (countProducts == 0) {
+        if (products.size() == 0) {
             System.out.println("Корзина пустая");
         } else {
             for (int i = 0; i <= products.size() - 1; i++) {
@@ -71,7 +70,6 @@ public class ProductBasket {
 
     public void cleanBasket() {
         products.removeAll(Collections.singleton(null));
-        countProducts = 0;
     }
 
     public void cleanBasketByNameProduct(String nameProduct) {
