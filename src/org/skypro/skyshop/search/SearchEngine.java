@@ -1,8 +1,12 @@
 package org.skypro.skyshop.search;
 
 import org.skypro.skyshop.exception.BestResultNotFound;
+import org.skypro.skyshop.product.Product;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SearchEngine {
     private ArrayList<Searchable> SearchableArray = new ArrayList<Searchable>();
@@ -18,14 +22,16 @@ public class SearchEngine {
 
     }
 
-    public ArrayList<String> search(String searchQuery) {
+    public Map search(String searchQuery) {
         int countSearchable = 0;
+        Map<String, String> serachableMap = new HashMap<>();
+
         for (int i = 0; i <= SearchableArray.size() - 1; i++) {
             if (SearchableArray.get(i).getSearchTerm().contains(searchQuery)) {
-                resultSearh.add("\n" + i + ". Тип контента " + SearchableArray.get(i).getTypeContent() + " \n" + SearchableArray.get(i).getSearchTerm());
+                serachableMap.put(SearchableArray.get(i).getTypeContent(),SearchableArray.get(i).getSearchTerm());
             }
         }
-        return resultSearh;
+        return serachableMap;
     }
 
     public Searchable searchInSearhable(String search) throws BestResultNotFound {

@@ -7,15 +7,14 @@ import org.skypro.skyshop.search.SearchEngine;
 import org.skypro.skyshop.basket.ProductBasket;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws BestResultNotFound {
 
         /*Проверка работы исключений*/
 
-        /*try {
+        try {
             SimpleProduct firstProduct = new SimpleProduct(" ", 100);
         } catch (IllegalArgumentException e){
             System.out.println("Не введено название продукта");
@@ -38,7 +37,7 @@ public class Main {
             DiscountedProduct thirdProduct = new DiscountedProduct("огурец",0,500);
         } catch (IllegalArgumentException e){
             System.out.println("Скидка может быть от 0 до 100%");
-        }*/
+        }
         /*Проверка работы исключений*/
 
 
@@ -47,14 +46,14 @@ public class Main {
         FixPriceProduct secondProduct = new FixPriceProduct("банан");
         DiscountedProduct thirdProduct = new DiscountedProduct("огурец",150,5);
 
-        ProductBasket basket = new ProductBasket();
+        /*ProductBasket basket = new ProductBasket();
         basket.addProduct(firstProduct);
         basket.addProduct(secondProduct);
         basket.addProduct(thirdProduct);
         System.out.println(basket.sumBasket());
 
         basket.cleanBasketByNameProduct("огурец");
-        basket.listBasket();
+        basket.listBasket();*/
 
         Article firstArticle = new Article("Свойства чая","Чаи бывают разные. Чай имеет много положительных свойств для организма");
         Article secondArticle = new Article("Хлеб","Хлеб имеет множество рецептов таких как...");
@@ -70,8 +69,8 @@ public class Main {
         search.add(fourthArticle);
 
 
-        ArrayList<String> resultSearch = new ArrayList<String>(search.search("а"));
-        System.out.println(resultSearch);
+        //ArrayList<String> resultSearch = new ArrayList<String>(search.search("а"));
+        System.out.println(search.search("а"));
 
         /*Проверка работы метода поиска*/
         System.out.println(search.searchInSearhable("Хлеб"));
@@ -84,6 +83,25 @@ public class Main {
             System.out.println("Объёект поиска не найден");
         }
         /*Проверка собственного исключения*/
+
+        /*SimpleProduct firstProduct = new SimpleProduct("чай", 100);
+        FixPriceProduct secondProduct = new FixPriceProduct("банан");
+
+        Map<String, List<Product>> map = new HashMap<>();
+        List<Product> products = new ArrayList<>();
+
+       products.add(firstProduct);
+       products.add(secondProduct);
+       map.put("basket",products);
+
+
+
+       for (List<Product> productList: map.values()) {
+           System.out.println(productList.get(0).getNameProduct());
+       }*/
+        //System.out.println(map.values().contains(firstProduct));
+
+
 
 
     }
