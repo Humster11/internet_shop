@@ -45,15 +45,19 @@ public class Main {
         SimpleProduct firstProduct = new SimpleProduct("чай", 100);
         FixPriceProduct secondProduct = new FixPriceProduct("банан");
         DiscountedProduct thirdProduct = new DiscountedProduct("огурец",150,5);
+        DiscountedProduct lastProduct = new DiscountedProduct("огурец",150,5);
 
-        /*ProductBasket basket = new ProductBasket();
+        ProductBasket basket = new ProductBasket();
         basket.addProduct(firstProduct);
         basket.addProduct(secondProduct);
         basket.addProduct(thirdProduct);
+        basket.addProduct(lastProduct);
         System.out.println(basket.sumBasket());
 
         basket.cleanBasketByNameProduct("огурец");
-        basket.listBasket();*/
+        basket.listBasket();
+        System.out.println(basket.checkProduct("чай"));
+        basket.cleanBasket();
 
         Article firstArticle = new Article("Свойства чая","Чаи бывают разные. Чай имеет много положительных свойств для организма");
         Article secondArticle = new Article("Хлеб","Хлеб имеет множество рецептов таких как...");
@@ -84,22 +88,7 @@ public class Main {
         }
         /*Проверка собственного исключения*/
 
-        /*SimpleProduct firstProduct = new SimpleProduct("чай", 100);
-        FixPriceProduct secondProduct = new FixPriceProduct("банан");
 
-        Map<String, List<Product>> map = new HashMap<>();
-        List<Product> products = new ArrayList<>();
-
-       products.add(firstProduct);
-       products.add(secondProduct);
-       map.put("basket",products);
-
-
-
-       for (List<Product> productList: map.values()) {
-           System.out.println(productList.get(0).getNameProduct());
-       }*/
-        //System.out.println(map.values().contains(firstProduct));
 
 
 

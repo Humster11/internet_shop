@@ -5,7 +5,6 @@ import org.skypro.skyshop.product.Product;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class SearchEngine {
@@ -22,7 +21,7 @@ public class SearchEngine {
 
     }
 
-    public Map search(String searchQuery) {
+    public Map<String, String> search(String searchQuery) {
         int countSearchable = 0;
         Map<String, String> serachableMap = new HashMap<>();
 
