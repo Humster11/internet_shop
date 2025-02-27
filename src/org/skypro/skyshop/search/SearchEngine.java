@@ -1,16 +1,13 @@
 package org.skypro.skyshop.search;
 
-import org.skypro.skyshop.exception.BestResultNotFound;
-import org.skypro.skyshop.product.Product;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import org.skypro.skyshop.exception.BestResultNotFound;
+
+import java.util.*;
 
 public class SearchEngine {
-    private ArrayList<Searchable> SearchableArray = new ArrayList<Searchable>();
+    private Set<Searchable> SearchableArray = new HashSet<>();
     private int count = 0;
-    private ArrayList<String> resultSearh = new ArrayList<String>();
 
     public SearchEngine() {
     }
@@ -18,26 +15,24 @@ public class SearchEngine {
     public void add(Searchable searchableElement) {
         SearchableArray.add(searchableElement);
         count = count + 1;
-
     }
 
-    public Map<String, String> search(String searchQuery) {
-        int countSearchable = 0;
-        Map<String, String> serachableMap = new HashMap<>();
+    public TreeSet<String> search(String searchQuery) {
+        TreeSet<String> serachableSet = new TreeSet<>(new Searchable.ReverseStringComparator());
 
-        for (int i = 0; i <= SearchableArray.size() - 1; i++) {
-            if (SearchableArray.get(i).getSearchTerm().contains(searchQuery)) {
-                serachableMap.put(SearchableArray.get(i).getTypeContent(),SearchableArray.get(i).getSearchTerm());
+        for (Searchable elementSearch : SearchableArray) {
+            if (elementSearch.getSearchTerm().contains(searchQuery)) {
+                serachableSet.add(elementSearch.getSearchTerm());
             }
         }
-        return serachableMap;
+        return serachableSet;
     }
 
     public Searchable searchInSearhable(String search) throws BestResultNotFound {
         Searchable result = null;
-        for (int i = 0; i <= SearchableArray.size() - 1; i++) {
-            if (SearchableArray.get(i).getSearchTerm().contains(search)) {
-                result = SearchableArray.get(i);
+        for (Searchable elementSearch : SearchableArray) {
+            if (elementSearch.getSearchTerm().contains(search)) {
+                result = elementSearch;
                 break;
             }
 
@@ -48,4 +43,6 @@ public class SearchEngine {
 
         return result;
     }
+
+
 }
