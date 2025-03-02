@@ -7,8 +7,6 @@ import org.skypro.skyshop.search.SearchEngine;
 import org.skypro.skyshop.basket.ProductBasket;
 
 
-import java.util.*;
-
 public class Main {
     public static void main(String[] args) throws BestResultNotFound {
 
@@ -41,28 +39,28 @@ public class Main {
         /*Проверка работы исключений*/
 
 
-
         SimpleProduct firstProduct = new SimpleProduct("чай", 100);
         FixPriceProduct secondProduct = new FixPriceProduct("банан");
-        DiscountedProduct thirdProduct = new DiscountedProduct("Огурец",150,5);
-        DiscountedProduct lastProduct = new DiscountedProduct("помидор",150,5);
+        DiscountedProduct thirdProduct = new DiscountedProduct("Огурец", 150, 5);
+        DiscountedProduct lastProduct = new DiscountedProduct("помидор", 150, 5);
 
-        /*ProductBasket basket = new ProductBasket();
+        ProductBasket basket = new ProductBasket();
         basket.addProduct(firstProduct);
         basket.addProduct(secondProduct);
         basket.addProduct(thirdProduct);
         basket.addProduct(lastProduct);
+        basket.listBasket();
         System.out.println(basket.sumBasket());
 
-        basket.cleanBasketByNameProduct("огурец");
+        /*basket.cleanBasketByNameProduct("огурец");
         basket.listBasket();
         System.out.println(basket.checkProduct("чай"));
         basket.cleanBasket();*/
 
-        Article firstArticle = new Article("Свойства чая","Чаи бывают разные. Чай имеет много положительных свойств для организма");
-        Article secondArticle = new Article("Хлеб","Хлеб имеет множество рецептов таких как...");
-        Article thirdArticle = new Article("Огурец","Огурец является овощем");
-        Article fourthArticle = new Article("Огурцы","Огурец является овощем и очень полезен");
+        Article firstArticle = new Article("Свойства чая", "Чаи бывают разные. Чай имеет много положительных свойств для организма");
+        Article secondArticle = new Article("Хлеб", "Хлеб имеет множество рецептов таких как...");
+        Article thirdArticle = new Article("Огурец", "Огурец является овощем");
+        Article fourthArticle = new Article("Огурцы", "Огурец является овощем и очень полезен");
 
         SearchEngine search = new SearchEngine();
         search.add(firstProduct);
@@ -75,9 +73,6 @@ public class Main {
         search.add(lastProduct);
 
 
-
-
-        //ArrayList<String> resultSearch = new ArrayList<String>(search.search("а"));
         System.out.println(search.search("а"));
         System.out.println(search.search("Огур"));
 
@@ -93,10 +88,6 @@ public class Main {
             System.out.println("Объёект поиска не найден");
         }*/
         /*Проверка собственного исключения*/
-
-
-
-
 
 
     }
